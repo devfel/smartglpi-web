@@ -1,5 +1,11 @@
+import { Header } from "@/components/Header";
+
 export function App() {
-  return <h1 className="hello world - Feliz"></h1>;
+  return (
+    <div className="bg-red-500 min-h-screen flex flex-col">
+      <Header />
+    </div>
+  );
 }
 
 export default App;
