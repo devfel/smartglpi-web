@@ -10,6 +10,7 @@ export function useAppState() {
   const [similarTickets, setSimilarTickets] = useState<TicketWithSimilarity[]>(
     []
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   const formattedData = similarTickets.map((ticketArray) => {
     const ticket = ticketArray[0];
@@ -21,5 +22,11 @@ export function useAppState() {
     };
   });
 
-  return { similarTickets, setSimilarTickets, formattedData };
+  return {
+    similarTickets,
+    setSimilarTickets,
+    formattedData,
+    isLoading,
+    setIsLoading,
+  };
 }

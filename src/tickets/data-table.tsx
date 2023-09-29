@@ -41,9 +41,6 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="px-6 py-3 flex justify-center border-b bg-primary text-primary-foreground">
-        <h2 className="font-bold">Related Tickets</h2>
-      </div>
       <div className="mx-4">
         <Table>
           <TableHeader>
@@ -89,9 +86,11 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className="h-60 text-center"
                 >
-                  No results.
+                  {data && data.length === 0
+                    ? "Ticket Not Found"
+                    : "No results."}
                 </TableCell>
               </TableRow>
             )}

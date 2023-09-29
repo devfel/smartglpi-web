@@ -4,14 +4,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Settings } from "lucide-react";
 import { ExternalLink } from "lucide-react";
+
 import { TicketWithSimilarity } from "@/utils/appState";
 
 interface SearchByIdFormProps {
   updateSimilarTickets: (tickets: TicketWithSimilarity[]) => void;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function SearchByIdForm({ updateSimilarTickets }: SearchByIdFormProps) {
+export function SearchByIdForm({
+  updateSimilarTickets,
+  setIsLoading,
+}: SearchByIdFormProps) {
   const [ticketNumber, setTicketNumber] = useState("");
+  const [ticketLink, setTicketLink] = useState("");
+  const [ticketTitle, setTicketTitle] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Ensure the input only allows 1 to 10 digit numbers
@@ -23,7 +30,7 @@ export function SearchByIdForm({ updateSimilarTickets }: SearchByIdFormProps) {
 
   const handleSearch = async () => {
     try {
-      console.log("IM HERE");
+      setIsLoading(true); // Start the loading process
       // Fetch the details of the searched ticket from the backend.
       let response = await fetch("http://localhost:5000/get-ticket-details", {
         method: "POST",
@@ -54,6 +61,11 @@ export function SearchByIdForm({ updateSimilarTickets }: SearchByIdFormProps) {
 
       // Assuming you'll want to store and use this data somewhere in your component or app
       if (data.title) {
+        setTicketTitle(data.title);
+        setTicketLink(
+          `https://sac-ntinf.ufsj.edu.br/front/ticket.form.php?id=${ticketNumber}`
+        );
+
         // Update the displayed ticket title and set the hyperlink.
         // For now, I'm just logging them. You might want to set them in component state or pass them to other components.
         console.log(`Ticket Title: ${data.title}`);
@@ -83,11 +95,13 @@ export function SearchByIdForm({ updateSimilarTickets }: SearchByIdFormProps) {
     } catch (error) {
       // Log any errors that occur during the fetch operations.
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false); // End the loading process
     }
   };
 
   return (
-    <div className="px-6 py-3 flex flex-col justify-between border-b">
+    <div className="px-6 py-3 flex flex-col justify-between">
       {/* First line with ID Label, ID Input, and Search Button */}
       <div className="flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap items-center gap-2">
@@ -106,7 +120,7 @@ export function SearchByIdForm({ updateSimilarTickets }: SearchByIdFormProps) {
           <Button onClick={handleSearch}>Search</Button>
         </div>
         <Button variant="outline" className="my-2">
-          <Settings className="w-4 h-4 " />
+          <Settings className="w-4 h-4" />
         </Button>
       </div>
 
@@ -116,12 +130,23 @@ export function SearchByIdForm({ updateSimilarTickets }: SearchByIdFormProps) {
           Ticket Title:
         </Label>
 
-        <a id="ticketSearchedTitle" href="#">
+        {ticketTitle === "" ? (
           <Button variant="link">
-            This is a nameplace holder
-            <ExternalLink className="mx-2" />
+            Search a Ticket Number (E.g. 12342 or 12789).
           </Button>
-        </a>
+        ) : (
+          <a
+            id="ticketSearchedTitle"
+            href={ticketLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="link" className="px-2">
+              <ExternalLink className="me-1 w-5 h-5" />
+              {ticketTitle}
+            </Button>
+          </a>
+        )}
       </div>
     </div>
   );
