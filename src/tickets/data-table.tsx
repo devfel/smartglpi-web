@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/table";
 import React from "react";
 
-import { Ticket } from "@/tickets/columns";
+import { Ticket, columns as ticketColumns } from "@/tickets/columns";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -82,7 +82,10 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => {
-                    if (cell.column.columnDef.accessorKey === "similarity") {
+                    if (
+                      (cell.column.columnDef as any).accessorKey ===
+                      "similarity"
+                    ) {
                       console.log("Entrou no if");
                       console.log(cell);
                       // Display progress bar
