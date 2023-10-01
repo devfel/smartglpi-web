@@ -11,6 +11,7 @@ export function useAppState() {
     []
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const formattedData = similarTickets.map((ticketArray) => {
     const ticket = ticketArray[0];
@@ -28,5 +29,7 @@ export function useAppState() {
     formattedData,
     isLoading,
     setIsLoading,
+    hasSearched,
+    setHasSearched,
   };
 }

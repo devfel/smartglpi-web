@@ -15,8 +15,14 @@ import {
 } from "@/components/ui/hover-card";
 
 export function App() {
-  const { setSimilarTickets, formattedData, isLoading, setIsLoading } =
-    useAppState();
+  const {
+    setSimilarTickets,
+    formattedData,
+    isLoading,
+    setIsLoading,
+    hasSearched,
+    setHasSearched,
+  } = useAppState();
 
   return (
     <div className="bg-muted min-h-screen">
@@ -26,6 +32,7 @@ export function App() {
         <SearchByIdForm
           updateSimilarTickets={setSimilarTickets}
           setIsLoading={setIsLoading}
+          setHasSearched={setHasSearched}
         />
 
         <SectionHeader title="Related Tickets" />
@@ -34,7 +41,11 @@ export function App() {
             <ButtonLoading />
           </div>
         ) : (
-          <DataTable columns={columns} data={formattedData} />
+          <DataTable
+            columns={columns}
+            data={formattedData}
+            hasSearched={hasSearched}
+          />
         )}
 
         <SectionHeader title="Suggested Answer" />

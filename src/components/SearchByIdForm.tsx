@@ -10,11 +10,13 @@ import { TicketWithSimilarity } from "@/utils/appState";
 interface SearchByIdFormProps {
   updateSimilarTickets: (tickets: TicketWithSimilarity[]) => void;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasSearched: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function SearchByIdForm({
   updateSimilarTickets,
   setIsLoading,
+  setHasSearched,
 }: SearchByIdFormProps) {
   const [ticketNumber, setTicketNumber] = useState("");
   const [ticketLink, setTicketLink] = useState("");
@@ -31,6 +33,7 @@ export function SearchByIdForm({
   const handleSearch = async () => {
     try {
       setIsLoading(true); // Start the loading process
+      setHasSearched(true);
       // Fetch the details of the searched ticket from the backend.
       let response = await fetch("http://localhost:5000/get-ticket-details", {
         method: "POST",
@@ -91,6 +94,10 @@ export function SearchByIdForm({
         console.log(data);
       } else {
         console.error("Ticket not found.");
+        updateSimilarTickets([]); // clear the previous similar tickets data
+        setTicketLink(""); // clear the previous ticket link
+        //TODO: setTicketTitle(`Ticket ID ${ticketNumber} not found`); // clear the previous ticket title
+        setTicketLink("#"); // clear the previous ticket link
       }
     } catch (error) {
       // Log any errors that occur during the fetch operations.
