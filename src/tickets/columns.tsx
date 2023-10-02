@@ -59,7 +59,7 @@ export const columns: ColumnDef<Ticket>[] = [
     accessorKey: "similarity",
     header: "Similarity",
     cell: ({ row }) => {
-      const similarity = row.original.similarity;
+      const similarity = row.original.similarity || 0;
       const percentage =
         calculateSimilarityPercentageLinear(similarity).toFixed(1);
       return (

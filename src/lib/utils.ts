@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function calculateSimilarityPercentageLinear(x) {
+export function calculateSimilarityPercentageLinear(x: number) {
   // Create the Function
   const linearAdjustment = 1.33; //increase the results in 33%
   let remove90PercentAdj = (x - 0.9) * 10 * linearAdjustment; //remove the 0.90  from the backend value

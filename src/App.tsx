@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { SearchByIdForm } from "@/components/SearchByIdForm";
 import { columns } from "./tickets/columns";
 import { DataTable } from "./tickets/data-table";
@@ -69,6 +70,8 @@ export function App() {
           debitis totam, quod nostrum, illum facilis dicta nemo consequuntur
           dolor harum reprehenderit
         </Textarea>
+
+        <Footer />
       </div>
     </div>
   );
