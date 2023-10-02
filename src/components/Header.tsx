@@ -19,10 +19,15 @@ export function Header() {
       <h1 className="text-xl font-bold">Smart GLPI</h1>
 
       <div className="flex items-center gap-3">
-        <Button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
-          <Sun className="w-4 h-4 me-2" />
-          <Separator orientation="vertical" className="h-6" />
-          <Moon className="w-4 h-4 ms-2" />
+        <Button
+          variant="ghost"
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        >
+          {theme === "dark" ? (
+            <Sun className="w-4 h-4" />
+          ) : (
+            <Moon className="w-4 h-4 m-0 p-0" />
+          )}
         </Button>
       </div>
     </div>
