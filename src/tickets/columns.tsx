@@ -63,7 +63,7 @@ export const columns: ColumnDef<Ticket>[] = [
       const percentage =
         calculateSimilarityPercentageLinear(similarity).toFixed(1);
       return (
-        <div className="w-full bg-secondary border rounded-sm">
+        <div className="w-full bg-secondary border border-muted-foreground rounded-sm">
           <div
             className="bg-primary text-xs font-medium text-primary-foreground text-center p-0.5 leading-none rounded-sm"
             style={{ width: `${percentage}%` }}
