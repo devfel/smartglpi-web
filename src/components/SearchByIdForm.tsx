@@ -120,6 +120,11 @@ export function SearchByIdForm({
             id="ticketNumber"
             value={ticketNumber}
             onChange={handleInputChange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
             maxLength={10}
             placeholder="Ticket ID #"
             className="w-40"

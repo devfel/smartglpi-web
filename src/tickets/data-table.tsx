@@ -86,8 +86,6 @@ export function DataTable<TData, TValue>({
                       (cell.column.columnDef as any).accessorKey ===
                       "similarity"
                     ) {
-                      console.log("Entrou no if");
-                      console.log(cell);
                       // Display progress bar
                       const percentage = calculateSimilarityPercentageLinear(
                         (cell.row.original as Ticket).similarity || 0
@@ -105,6 +103,23 @@ export function DataTable<TData, TValue>({
                           </div>
                         </TableCell>
                       );
+                      {
+                        /* Version With Percentage outside the bar.
+                        
+                        <TableCell key={cell.id}>
+                          <div className="flex">
+                            <p className="text-xs font-medium me-1">
+                              {percentage}%
+                            </p>
+                            <div className="w-full bg-secondary border rounded-sm">
+                              <div
+                                className="bg-primary h-4 text-xs font-medium text-primary-foreground text-center p-0.5 leading-none rounded-sm"
+                                style={{ width: `${percentage}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                          </TableCell> */
+                      }
                     } else {
                       return (
                         <TableCell key={cell.id}>
