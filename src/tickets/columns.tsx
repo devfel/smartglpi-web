@@ -47,8 +47,8 @@ export const columns: ColumnDef<Ticket>[] = [
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Button variant="link" className="px-0 h-4">
-            <ExternalLink className="me-1 w-5 h-4" />
+          <Button variant="link" className="p-0 h-auto align-middle text-left">
+            <ExternalLink className="me-1 w-4 h-4 flex-shrink-0" />
             {row.original.title}
           </Button>
         </a>
