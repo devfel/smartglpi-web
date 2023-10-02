@@ -17,21 +17,10 @@ import {
 } from "@/components/ui/table";
 import React from "react";
 
-import { Ticket, columns as ticketColumns } from "@/tickets/columns";
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   hasSearched: boolean;
-}
-
-function calculateSimilarityPercentageLinear(x) {
-  // Create the Function
-  const linearAdjustment = 1.33; //increase the results in 33%
-  let remove90PercentAdj = (x - 0.9) * 10 * linearAdjustment; //remove the 0.90  from the backend value
-  if (remove90PercentAdj < 0) remove90PercentAdj = 0; //if the value is negative, set to 0
-  if (remove90PercentAdj > 1) remove90PercentAdj = 1; //if the value is greater than 1, set to 1 (100%
-  return remove90PercentAdj * 100;
 }
 
 export function DataTable<TData, TValue>({
@@ -81,56 +70,14 @@ export function DataTable<TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
-                  {row.getVisibleCells().map((cell) => {
-                    if (
-                      (cell.column.columnDef as any).accessorKey ===
-                      "similarity"
-                    ) {
-                      // Display progress bar
-                      const percentage = calculateSimilarityPercentageLinear(
-                        (cell.row.original as Ticket).similarity || 0
-                      ).toFixed(1);
-                      // Assuming cell.value contains the similarity percentage
-                      return (
-                        <TableCell key={cell.id}>
-                          <div className="w-full bg-secondary border rounded-sm">
-                            <div
-                              className="bg-primary text-xs font-medium text-primary-foreground text-center p-0.5 leading-none rounded-sm"
-                              style={{ width: `${percentage}%` }}
-                            >
-                              {percentage}%
-                            </div>
-                          </div>
-                        </TableCell>
-                      );
-                      {
-                        /* Version With Percentage outside the bar.
-                        
-                        <TableCell key={cell.id}>
-                          <div className="flex">
-                            <p className="text-xs font-medium me-1">
-                              {percentage}%
-                            </p>
-                            <div className="w-full bg-secondary border rounded-sm">
-                              <div
-                                className="bg-primary h-4 text-xs font-medium text-primary-foreground text-center p-0.5 leading-none rounded-sm"
-                                style={{ width: `${percentage}%` }}
-                              ></div>
-                            </div>
-                          </div>
-                          </TableCell> */
-                      }
-                    } else {
-                      return (
-                        <TableCell key={cell.id}>
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </TableCell>
-                      );
-                    }
-                  })}
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
                 </TableRow>
               ))
             ) : hasSearched ? (
