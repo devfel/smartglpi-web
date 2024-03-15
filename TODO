@@ -1,0 +1,7 @@
+[ ] Add the settings button to configure the API parameters (in serchByIdForm.tsx)
+[ ] Tirar prints em Inglês.
+[ ] Translate to Portuguese, the entire interface. 
+[ ] Remove Console.logs
+[ ] Na resposta quando nao é possivel encontrar respostas similares, adicionar pq, com percentagem minimo de similaridade.
+Mensagem Atual: "Não foi possível encontrar respostas com similaridade relevante o suficiente na base de dados para gerarmos uma resposta."
+[ ] Enviar Atualização para GitHub.
