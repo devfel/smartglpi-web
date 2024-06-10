@@ -13,7 +13,7 @@ This project is the frontend for the SMARTGLPI system, which interacts with the 
 The interactive and simple interface.</p>
 
   <p align="center">
-    <img  width="600px" src="./SmartGLPI.gif" alt="SmartGLPI Iterface Gif"></a>
+    <img  width="1000px" src="./SmartGLPI.gif" alt="SmartGLPI Iterface Gif"></a>
   </p>
 
 ## 🌟 Features
