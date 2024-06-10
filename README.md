@@ -27,30 +27,31 @@ The interactive and simple interface.</p>
 1. **Clone the Repository**:
    Begin by cloning the repository to your local machine:
 
-   \`\`\`bash
+   ```bash
    git clone https://github.com/devfel/smartglpi-web.git
-   \`\`\`
+   ```
 
 2. **Navigate to the Directory**:
 
-   \`\`\`bash
+   ```bash
    cd smartglpi-web
-   \`\`\`
+   ```
 
 3. **Install the Required Dependencies**:
    Ensure you have all the required dependencies installed:
-   \`\`\`bash
+
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 4. **Start the Development Server**:
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
+   ```
 
 ## 🚀 Getting Started
 
-After installation, you can start the development server by running \`npm run dev\`. This will serve the application at \`http://localhost:3000\`.
+After installation, you can start the development server by running `npm run dev`. This will serve the application at `http://localhost:3000`.
 
 ## 📖 Usage Examples
 
@@ -63,9 +64,9 @@ After installation, you can start the development server by running \`npm run de
 
 To build the application for production, use:
 
-\`\`\`bash
+```bash
 npm run build
-\`\`\`
+```
 
 This will generate a production-ready build.
 
@@ -76,9 +77,9 @@ This will generate a production-ready build.
 
 ## 📂 Directory Structure
 
-- \`src/\`: Contains all the React components and utility functions.
-- \`public/\`: Contains static assets like images and fonts.
-- \`index.html\`: The entry point for the application.
+- `src/`: Contains all the React components and utility functions.
+- `public/`: Contains static assets like images and fonts.
+- `index.html`: The entry point for the application.
 
 ## 🙌 Contribution
 
